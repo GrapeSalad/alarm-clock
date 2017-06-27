@@ -21,6 +21,7 @@ var lib = require('bower-files')({
 
 var buildProduction = utilities.env.production;
 
+
 gulp.task('jsBrowserify', ['concatInterface'], function() {
   return browserify({ entries: ['./tmp/allConcat.js'] })
     .bundle()

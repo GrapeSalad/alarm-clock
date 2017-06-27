@@ -1,12 +1,23 @@
+var AlarmClock = require('./../js/alarmClock.js').alarmClockModule;
+
+function date_time() {
+  $("#time").html(moment().format('H:mm:ss'));
+}
+setInterval(date_time, 1000);
+
 $(document).ready(function(){
-  var now = moment().format("HH:mmA");
-  $('#time').append('<p>The time is ' + now + ' now is the time.</p>');
-  $("#alarm-set").submit(function(event){
+  $('#output').hide();
+  $('#alarm-set').submit(function(event) {
     event.preventDefault();
-    var alarm = $("#alarm").val();
-    console.log("alarm is set for:" + alarm);
-    var alarmCountdownTime = moment().subtract(moment(alarm.toString(), "HH:mmA"),moment(now.toString(), "HH:mmA"));
-    console.log(moment(alarm.toString(), "HH:mmA"));
-    console.log("time till alarm: " + moment(alarmCountdownTime).format("HH:mmA"));
+    var timesUp = $('#alarm').val();
+    var newAlarmClock = new AlarmClock();
+    var myVar = setInterval(myTimer, 1000);
+      function myTimer() {
+        // console.log(newAlarm.alarmClock(timesUp));
+      if (newAlarmClock.alarmClock(timesUp)===true) {
+        $('#output').show();
+         clearInterval(myVar);
+      }
+    }
   });
 });
