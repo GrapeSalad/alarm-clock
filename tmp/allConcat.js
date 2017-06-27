@@ -1,4 +1,5 @@
 var AlarmClock = require('./../js/alarmClock.js').alarmClockModule;
+var Sounds = require('./../js/sound.js').soundModule;
 
 function date_time() {
   $("#time").html(moment().format('H:mm:ss'));
@@ -16,7 +17,9 @@ $(document).ready(function(){
         // console.log(newAlarm.alarmClock(timesUp));
       if (newAlarmClock.alarmClock(timesUp)===true) {
         $('#output').show();
-         clearInterval(myVar);
+        clearInterval(myVar);
+        $('body').addClass("red");
+        Sounds();
       }
     }
   });

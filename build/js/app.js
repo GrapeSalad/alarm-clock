@@ -20,7 +20,18 @@ AlarmClock.prototype.alarmClock = function(timesUp) {
 exports.alarmClockModule = AlarmClock;
 
 },{}],2:[function(require,module,exports){
+function Sounds() {
+  var sound = document.getElementById("audio");
+  sound.play();
+  console.log("sounds");
+}
+
+
+exports.soundModule = Sounds;
+
+},{}],3:[function(require,module,exports){
 var AlarmClock = require('./../js/alarmClock.js').alarmClockModule;
+var Sounds = require('./../js/sound.js').soundModule;
 
 function date_time() {
   $("#time").html(moment().format('H:mm:ss'));
@@ -38,10 +49,12 @@ $(document).ready(function(){
         // console.log(newAlarm.alarmClock(timesUp));
       if (newAlarmClock.alarmClock(timesUp)===true) {
         $('#output').show();
-         clearInterval(myVar);
+        clearInterval(myVar);
+        $('body').addClass("red");
+        Sounds();
       }
     }
   });
 });
 
-},{"./../js/alarmClock.js":1}]},{},[2]);
+},{"./../js/alarmClock.js":1,"./../js/sound.js":2}]},{},[3]);
