@@ -20,14 +20,14 @@ Two installations necessary for SASS:
 | bower |$ bower init |none needed | none |
 | gulp |$ npm install gulp --save-dev |var gulp = require('gulp'); | none |
 | browser-sync |$ npm install browser-sync --save-dev |var browserSync = require('browser-sync').create(); | none |
-| browserify |$ npm browserify --save-dev|var browserify = require('browserify'); | gulp.task('jsBrowserify', ['concatInterface'], function() {return browserify({ entries: ['./tmp/allConcat.js'] }).bundle().pipe(source('app.js')).pipe(gulp.dest('./build/js'));}); |
-| browserify dependencies |$ npm vinyl-source-stream --save-dev |var source = require('vinyl-source-stream'); | none |
-| concat |$ npm gulp-concat --save-dev |var concat = require('gulp-concat'); | gulp.task('concatInterface', function() {return gulp.src(['./js/*-interface.js']).pipe(concat('allConcat.js')).pipe(gulp.dest('./tmp'));}); |
-| uglify(minify) |$ npm gulp-uglify --save-dev |var uglify = require('gulp-uglify'); | gulp.task("minifyScripts", ["jsBrowserify"], function(){return gulp.src("./build/js/app.js").pipe(uglify()).pipe(gulp.dest("./build/js"));}); |
-| utilities |$ npm gulp-util --save-dev |var utilities = require('gulp-util'); <br> var buildProduction = utilities.env.production; | gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){browserSync.reload();});</br>gulp.task('bowerBuild', ['bower'], function(){browserSync.reload();});</br>gulp.task('htmlBuild', function() {browserSync.reload();}); |
-| del(clean) |$ npm del --save-dev |var del = require('del'); | gulp.task("clean", function(){return del(['build', 'tmp']);}); |
-| jshint(error checking) |$ npm jshint --save-dev |var jshint = require('gulp-jshint'); | gulp.task('jshint', function(){return gulp.src(['js/wildcard.js']).pipe(jshint()).pipe(jshint.reporter('default'));}); |
-| same as above |$ npm gulp-jshint --save-dev |none needed | none |
+| browserify |$ npm install browserify --save-dev|var browserify = require('browserify'); | gulp.task('jsBrowserify', ['concatInterface'], function() {return browserify({ entries: ['./tmp/allConcat.js'] }).bundle().pipe(source('app.js')).pipe(gulp.dest('./build/js'));}); |
+| browserify dependencies |$ npm install vinyl-source-stream --save-dev |var source = require('vinyl-source-stream'); | none |
+| concat |$ npm install gulp-concat --save-dev |var concat = require('gulp-concat'); | gulp.task('concatInterface', function() {return gulp.src(['./js/*-interface.js']).pipe(concat('allConcat.js')).pipe(gulp.dest('./tmp'));}); |
+| uglify(minify) |$ npm install gulp-uglify --save-dev |var uglify = require('gulp-uglify'); | gulp.task("minifyScripts", ["jsBrowserify"], function(){return gulp.src("./build/js/app.js").pipe(uglify()).pipe(gulp.dest("./build/js"));}); |
+| utilities |$ npm install gulp-util --save-dev |var utilities = require('gulp-util'); <br> var buildProduction = utilities.env.production; | gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){browserSync.reload();});</br>gulp.task('bowerBuild', ['bower'], function(){browserSync.reload();});</br>gulp.task('htmlBuild', function() {browserSync.reload();}); |
+| del(clean) |$ npm install del --save-dev |var del = require('del'); | gulp.task("clean", function(){return del(['build', 'tmp']);}); |
+| jshint(error checking) |$ npm install jshint --save-dev |var jshint = require('gulp-jshint'); | gulp.task('jshint', function(){return gulp.src(['js/wildcard.js']).pipe(jshint()).pipe(jshint.reporter('default'));}); |
+| same as above |$ npm install gulp-jshint --save-dev |none needed | none |
 | bower-files |$ npm install bower-files --save-dev |var lib = require('bower-files')(); | gulp.task('bowerCSS', function () {return gulp.src(lib.ext('css').files).pipe(concat('vendor.css')).pipe(gulp.dest('./build/css'));});</br>gulp.task('bowerJS', function () {return gulp.src(lib.ext('js').files).pipe(concat('vendor.min.js')).pipe(uglify()).pipe(gulp.dest('./build/js'));});</br>gulp.task('bower', ['bowerJS', 'bowerCSS']); |
 | jquery |$ bower install jquery --save |none needed | reference build task |
 | bootstrap |$ bower install bootstrap --save |"overrides":{</br>"bootstrap": {</br>"main": [</br>"less/bootstrap.less", </br>"dist/css/bootstrap.css", </br>"dist/js/bootstrap.js"]}}| reference build task |
